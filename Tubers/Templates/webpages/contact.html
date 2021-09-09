@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Ytubers | Contact{% endblock title %}
+
+{% block navList %}
+<ul class="navbar-nav ml-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'about' %}">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'youtubers' %}">Tubers</a>
+  </li>
+  <li class="nav-item active">
+    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+  </li>
+</ul>
+{% endblock navList %}
+
+{% block content %}
+<main class="about-us">
+  <div class="banner">
+    <img src="{% static './assets/images/bg-banner.png' %}" alt="" class="img-fluid w-100">
+    <h1 class="text-center">
+      Contact Us
+    </h1>
+  </div>
+  <h2 class="text-center mt-5 mb-2  animate__animated animate__flipInX animate__slow	">
+    Get in touch with Our Team
+  </h2>
+  <p class="text-center mb-3  animate__animated animate__flipInX animate__delay-1s">
+    Fill the form below and we will get in touch asap
+  </p>
+
+  <section class="container mt-5">
+    <div class="row ">
+      <div class="col-md-6 mb-2 ">
+        <form method="POST" action=" {% url 'contact' %} ">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-lg-6">
+              <!-- <input type="email" class="form-control" placeholder="Full Name"> -->
+              {{ form.full_name|as_crispy_field}}
+
+            </div>
+            <div class="form-group col-lg-6">
+              <!-- <input type="password" class="form-control" placeholder="Phone Number"> -->
+              {{ form.phone|as_crispy_field}}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-lg-6">
+              <!-- <input type="email" class="form-control" placeholder="Email"> -->
+              {{ form.email|as_crispy_field}}
+            </div>
+            <div class="form-group col-lg-6">
+              <!-- <input type="password" class="form-control" placeholder="Company Name"> -->
+              {{ form.company_name|as_crispy_field}}
+
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- <input type="text" class="form-control" placeholder="Subject"> -->
+            {{ form.subject|as_crispy_field}}
+          </div>
+          <div class="form-group pt-2">
+            <!-- <textarea class="form-control" rows="3" placeholder="Details Message"></textarea> -->
+            {{ form.message|as_crispy_field}}
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-accent">Contact Us</button>
+          </div>
+
+        </form>
+
+        <!-- <form method="post" action="{% url 'contact' %}">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-success">Save person</button>
+        </form> -->
+
+      </div>
+
+      <div class="col-md-4 offset-md-2 d-flex justify-content-center mb-2">
+        <div class="card">
+          <div class="card-body">
+            <div class="mb-4">
+              <h6 class="card-title font-weight-bolder">Phone</h6>
+              <span class="card-text">+91 9898989899</span>
+            </div>
+            <div class="mb-4">
+              <h6 class="card-title font-weight-bolder">Email</h6>
+              <span class="card-text">info@ytubers.com</span>
+            </div>
+            <div class="mb-4">
+              <h6 class="card-title font-weight-bolder">Address</h6>
+              <span class="card-text">12 some street, <br> Some city and State, <br>India </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock content %}
