@@ -48,7 +48,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{ youtuber.name }}</h5>
-                <p class="card-text">{{ youtuber.catogery }}</p>
+                <p class="card-text">{{ youtuber.category }}</p>
                 <div class="person-description mt-2">
                   <button class="btn btn-accent"> {{ youtuber.city }} </button>
                   <button class="btn btn-accent"> {{ youtuber.age }} </button>
@@ -97,8 +97,8 @@
               <div class="form-group">
                 <select class="form-control">
                   <option selected disabled hidden>Category</option>
-                  {% for catogery in catogery_list %}
-                  <option>{{ catogery }}</option>
+                  {% for category in category_list %}
+                  <option>{{ category }}</option>
                   {% endfor %}
                 </select>
               </div>

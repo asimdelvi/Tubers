@@ -22,7 +22,7 @@ class Youtuber(models.Model):
     ('others', 'others'),
   )
 
-  catogery_choice = (
+  category_choice = (
     ('code', 'code'),
     ('tech_review', 'tech_review'),
     ('vlogs', 'vlogs'),
@@ -43,6 +43,6 @@ class Youtuber(models.Model):
   crew = models.CharField(choices = crew_choices,max_length=100)
   camera_type = models.CharField(choices= camera_choice, max_length=100)
   subs_count = models.CharField(max_length=100)
-  catogery = models.CharField(choices=catogery_choice, max_length=100)
+  category = models.CharField(choices=category_choice, max_length=100)
   is_featured = models.BooleanField(default=False)
   created_date = models.DateTimeField(default=datetime.now, blank=True)
