@@ -1,13 +1,14 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Youtuber
-from django.db.models import Q, query_utils
 # Create your views here.
+
 def youtubers(request):
   youtubers = Youtuber.objects.order_by('-created_date')
-
-  city_list = Youtuber.objects.values_list('city', flat=True)
-  camera_type_list = Youtuber.objects.values_list('camera_type', flat=True)
-  category_list = Youtuber.objects.values_list('category', flat=True)
+  city_search = Youtuber.objects.values_list('city', flat=True).distinct()
+  camera_type_search = Youtuber.objects.values_list(
+      'camera_type', flat=True).distinct()
+  category_search = Youtuber.objects.values_list(
+      'category', flat=True).distinct()
 
   if 'city' in request.GET:
     city = request.GET['city']
@@ -25,10 +26,10 @@ def youtubers(request):
       youtubers = Youtuber.objects.filter(category__iexact=category)
 
   data = {
-    'youtubers': youtubers,
-    'city_list': city_list,
-    'camera_type_list': camera_type_list,
-    'category_list': category_list,
+      'youtubers': youtubers,
+      'city_list': city_search,
+      'camera_type_list': camera_type_search,
+      'category_list': category_search,
   }
 
   return render(request, 'youtubers/youtubers.html', data )
